@@ -1,0 +1,445 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.homeWrapper {
+    width: 100%;
+    min-height: 100vh;
+    background-color: black;
+}
+:root {
+    --mainColor : #fff ;
+    --semiDark : #161616ba ;
+}
+.home {
+    max-width: 1400px;
+    height: 100%;
+    color: var(--mainColor);
+}
+.navbarWrapper {
+    height: 100px;
+    width: 100%;
+    background-color: #000000;
+}
+.navbar {
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: var(--mainColor);
+    background-color: #000000;
+}
+.searchResult{
+    height: 92vh;
+    width: 100%;
+    background-color: #ffffff18;
+    position: absolute;
+    left: 0;
+    top: 76px;
+    z-index: 99;
+}
+.hideSearchBG {
+    display: none;
+}
+.searchBox{
+    height: 50px;
+    width: 400px;
+    background-color: var(--semiDark);
+    border: 1px solid #373737;
+    padding: 0 10px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: start;
+    border-radius: 5px;
+}
+.searchBox input{
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    width: 90%;
+}
+.cartBtn, .likeItems{
+    height: 50px;
+    width: 120px;
+    background-color: var(--semiDark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.circle{
+    height: 50px;
+    width: 50px;
+    background-color: var(--semiDark);
+    border: 2px solid #1f1f1f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* filter  */
+.filterWrapper {
+    width: 22%;
+    border: 1px solid var(--semiDark);
+    min-height: 600px;
+    border-radius: 10px;
+    padding: 20px;
+}
+.filterWrapper h2 {
+    font-size: 19px;
+}
+.categoryWrapper , .designsWrapper, .colorsWrapper {
+    padding: 8px 12px;
+    font-size: 17px;
+    font-weight: 300;
+}
+.selectBox{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+.selectBox input[type='checkbox'] {
+    height: 23px;
+    appearance: none;
+    width: 23px;
+    border: 1px solid #2e2e2e;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+}
+.selectBox input[type='checkbox']:checked {
+    background-color: #ffffff;
+    border: 3px solid var(--semiDark);
+}
+
+
+/* products  */
+.prodcuts {
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--semiDark);
+    background-color: #0a0a0a;
+    border-radius: 10px;
+}
+.selectedCategory{
+    border:solid 1px #282828;
+    background-color: #0a0a0a;
+    height: 30px;
+    padding: 0 20px;
+    border-radius: 5px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.product{
+    border: 1px solid var(--semiDark);
+    width: 300px;
+    height: 470px;
+    border-radius: 10px;
+    position: relative;
+}
+.viewProdcutBtn{
+    background-color: #47950b;
+    height: 40px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.bestSeller {
+    background-color: transparent;
+    border-radius: 7px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 15px;
+    height: 30px;
+    width: 90px;
+    background-color: #1f1f1f7a;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+.productTitle {
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 10px;
+}
+
+/* prodcut specific page  */
+.productPageWrapper{
+    height:100vh ;
+    width: 100%;
+    background-color: #000000;
+    color: var(--mainColor);
+}
+.prodctuPage {
+    max-width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+}
+.prodctuPage {
+    display: flex;
+    
+}
+.leftSide ,.rightSide {
+    height: 100%;
+    width: 50%;
+}
+.imageGallery{
+    height: 480px;
+    width: 430px;
+    display: flex;
+    gap: 10px;
+}
+.smallImages {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.miniImg{
+    height: 24%;
+    width: 100%;
+    border: 1px solid var(--semiDark);
+    padding: 5px;
+    cursor: pointer;
+}
+ .miniImg img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.bigImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    padding: 5px;
+}
+.bigImage{
+    height: 100%;
+    width: 80%;
+    border: 1px solid var(--semiDark);
+}
+.leftSide {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+}
+.ctaBtns{
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #47950b;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 8px;
+    gap: 5px;
+}
+.addToCart{
+    background-color: #fff;
+    color: #000000;
+    cursor: pointer;
+}
+.titleAndPrice,.sizesAvalable, .productDetails, .sildBy, .policyDetails{
+    width: 100%;
+    padding: 15px ;
+    border:1px solid var(--semiDark);
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+.titleOfProduct{
+    font-size: 22px;
+}
+.salePrice{
+    font-size: 20px;
+}
+.bestSellr{
+    background-color: var(--semiDark);
+    display: inline;
+    padding: 5px;
+    border: 1px solid #3f3f3f;
+    border-radius: 8px;
+}
+.size{
+    background-color: var(--semiDark);
+    display: inline;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+.productDetails h3 {
+    font-size: 18px;
+}
+
+/* css for login registration page  */
+.registerFormContainer, .loginContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+    color: var(--mainColor);
+}
+.form {
+    width: 400px;
+}
+.form input {
+    background-color: transparent;
+    border: 1px solid var(--semiDark);
+    border-radius: 8px;
+    height: 50px;
+    width: 100%;
+    padding: 0 10px;
+    outline: none;
+    margin-top: 10px;
+}
+
+/* dashbord css  */
+.dashbordWrapper{
+    width: 100%;
+    height: 100vh;
+    background-color: #000000;
+    color: var(--mainColor);
+}
+.adminContainer{
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.dashBordTitle{
+    background-color: var(--semiDark);
+    padding: 10px;
+    display: inline;
+    border-radius: 8px;
+}
+.orderGlamps{
+    height: 120px;
+    width: 100%;
+    border: 1px solid var(--semiDark);
+    border-radius: 8px;
+}
+.uploadBtn{
+    background-color: var(--semiDark);
+    padding: 20px;
+    border-radius: 8px;
+}
+.uploadBtn:hover {
+    background-color: #292929;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+/* add prodct page  */
+.addProdcutWrapper{
+    height: 100vh;
+    width: 100%;
+    background-color:black;
+    color: #fff;
+}
+.addProdcut {
+    max-width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+}
+.inputStyling {
+    background-color: transparent;
+    border: 1px solid var(--semiDark);
+    border-radius: 8px;
+    height: 50px;
+    width: 100%;
+    padding: 0 10px;
+    outline: none;
+    margin-top: 10px;
+}
+.textAreaStyling {
+    background-color: transparent;
+    border: 1px solid var(--semiDark);
+    border-radius: 8px;
+    height: 100px;
+    width: 100%;
+    padding: 0 10px;
+    outline: none;
+    margin-top: 10px;
+}
+
+
+/* loading div css  */
+.loadingDiv {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: #00000094;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.loader{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 10px solid #ffffff;
+    border-top-color:#EEBC35 ;
+    transition: 0.2s ease-in-out;
+    animation: loading 1s  infinite ; 
+}
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.likeIonOnProductCard{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 25px;
+    font-size: 20px;
+    text-shadow: 0px 0px 10px #000000;
+}
+.liked {
+    background-color: #ff0000;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 0px 10px #ff0000 !important;
+    height: 30px;
+    width:30px;
+    margin: 22px;
+    border-radius: 50%;
+}
+.customerRegistraionWrapper,.customerloginWrapper {
+    height: 100vh;
+    width: 100%;
+    background-color: #000000;
+    color: #fff;
+}
+.customerRegistraion,.customerLogin {
+    max-width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+}
+.costomerRegistrationForm{
+    width: 400px;
+}
