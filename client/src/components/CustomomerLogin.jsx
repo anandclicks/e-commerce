@@ -1,9 +1,12 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import LoadingDiv from './LoadingDiv'
+import { CustomerContext } from '../../context/customerContext'
 
 const CustomomerLogin = () => {
+  // GETTING METHOD FROM CUSTOMER CONTEXT 
+  const {setloggedInCustomer} = useContext(CustomerContext)
   // USE STAET FOR DIAPLAY ERROR MESSEG 
   const [errorMessege, seterrorMessege] = useState(null)
   // USESTAE FOR REDIRECTION IN CASE OF SUCESS MESSEG 
@@ -29,6 +32,7 @@ const CustomomerLogin = () => {
     }
     // IF CUSTOMER LOGGED IN SUCCESFULLY 
     if(response.data.sucess) {
+      setloggedInCustomer(response.data.customer)
       setredirect(()=> true)
     }
   }
@@ -52,7 +56,7 @@ const CustomomerLogin = () => {
           <div><p className='text-red-600 mt-2 text-sm'>{errorMessege}</p></div>
         )}
         <input type="submit" className='w-full h-[50px] border-none border-[1px] border-stone-700 bg-green-700 rounded-md my-5 cursor-pointer' value={"Sign-in"} />
-      <small><Link to={'/signup'}>Go for <span className='text-green-700'>Sign-in</span></Link></small>
+      <small><Link to={'/signup'}>Go for <span className='text-green-700'>Sign-up</span></Link></small>
       </form>
     </div>
   </div>

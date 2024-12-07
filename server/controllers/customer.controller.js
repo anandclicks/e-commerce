@@ -128,7 +128,6 @@ const likeControlller = async(req,res)=> {
   else {
    const realCustomer = await customerModel.findOne({emailAddress : loggedInUser.emailAddress})
    realCustomer.likedProdcut.forEach((item)=> {
-     console.log(item._id)
     })
     const isProductAlreadyPresent = realCustomer.likedProdcut.some((item)=> (item._id).toString() === prodcutId)
     //  if prodcut is already presesnt into user's liked array 
@@ -171,9 +170,11 @@ const likeControlller = async(req,res)=> {
 // FUNCTION FOR ADDING PRODCUT INTO CUSTOMER'S CART ARRAY 
 const addtoCartFunction = async(req,res)=> {
   const user = req.loggedInUser
-  const productId = req.body.itemId
+  const productId = req.body.id
+  console.log(productId)
+   console.log(productId)
   // CHECHING PRODCUT EXIST OR NOT 
-  const isProductExist = await customerModel.findOne({_id : productId})
+  const isProductExist = await productModel.findOne({_id : productId})
   // SENDING RESPONSE IF PRODCUT NOT EXIST 
   if(!isProductExist) {
     return res.json({
@@ -182,29 +183,50 @@ const addtoCartFunction = async(req,res)=> {
     })
   }
      // IF PRODCUT EXIST SO CHECHING FOR WEATHER THAT PRODCUT IS ALREADY INTO CART ARRY OR NOT  
-     const isProductAlreadyPresent = user.cartItem.some((item)=> item === (isProductExist._id).toString())
-     if(!isProductAlreadyPresent) {
+     const isProductAlreadyPresent = user.cartItem.some((item)=> (item).toString() === (isProductExist._id).toString())
+     console.log(isProductAlreadyPresent)
+     if(isProductAlreadyPresent) {
+      const realCustomer = await customerModel.findOne({emailAddress : user.emailAddress}).select('-password')
+      const cartAfterPoppingItem = realCustomer.cartItem.filter((item)=> (item._id).toString() !== productId)
+      realCustomer.cartItem = cartAfterPoppingItem
+      await realCustomer.save()
       return res.json({
         sucess : true,
+        user : realCustomer,
         messege : "Prodcut succesfully removed from your cart!",
       })
      }
      else {
+      const realCustomer = await customerModel.findOne({emailAddress : user.emailAddress}).select('-password')
+      realCustomer.cartItem.push(productId)
+      await realCustomer.save()
       return res.json({
         sucess : true,
-        messege : "Prodcut succesfully added into your cart!"
+        user : realCustomer,
+        messege : "Prodcut succesfully added into your cart!",
       })
      }
 }
 
 
+
 // FUNCTION FOR SENDING LIKED PRODCUT OF LOGGEDIN IN CUSTOMER 
-const sendLikedProdcut = (req,res)=> {
-  const customer = req.loggedInUser
+const sendLikedProdcut = async(req,res)=> {
+  const customer = await customerModel.findOne({emailAddress : req.loggedInUser.emailAddress})
  return res.json({
     sucess : true,
     messeg : "All your liked prodcut!",
-    products : customer.likedProdcut
+    user : await customerModel.findOne({emailAddress : customer.emailAddress}).populate("likedProdcut").select("-password")
+  })
+}
+
+// FUNCTION FOR SENDING CART PRODUCT OF LOGGED IN CUSTOMER 
+const snedCartProduct = async(req,res)=> {
+  const customer = await customerModel.findOne({emailAddress : req.loggedInUser.emailAddress}).populate('cartItem')
+ return res.json({
+    sucess : true,
+    messeg : "All your cart prodcut!",
+    user : await customerModel.findOne({emailAddress : customer.emailAddress}).populate("cartItem").select("-password")
   })
 }
 
@@ -214,5 +236,6 @@ module.exports = {
   customerLogin,
   likeControlller,
   addtoCartFunction,
-  sendLikedProdcut
+  sendLikedProdcut,
+  snedCartProduct
 }

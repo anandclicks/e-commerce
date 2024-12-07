@@ -1,34 +1,38 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AdminDashborContext } from '../../context/AdminDahbord'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const AdminNavbar = () => {
+    // usestate for redirect vandor login page in case of unautherized user 
+    const [redirect, setredirect] = useState(false)
       const navigate = useNavigate()
-    const {DashbordloggedInUser,setredirectState,setDashbordloggedInUser,redirectState,handleRedirectState} = useContext(AdminDashborContext)
+
+      // getting all method or value from admin context 
+    const {DashbordloggedInUser,setredirectState,setDashbordloggedInUser} = useContext(AdminDashborContext)
     const apiCall = async()=> {
       const response = await axios.get('http://localhost:3000/api/v1/user/userAuthetication', {withCredentials : true})
       console.log(response)
       // setting value to context provider \
       setDashbordloggedInUser(()=> response.data.user)
-      if(!response.data.status) {
-        handleRedirectState(true)
+      if(!response.data.sucess) {
+       setredirect(true)
         console.log("it should have redirected")
       }
-      else {
-        handleRedirectState(false)
-        console.log("it should'nt have redirected")
-      }
+     if(response.data.sucess) {
+      setredirect(false)
+      console.log("it should'nt have redirected")
+     }
     }
     useEffect(() => {
       apiCall()
     }, [])
     // redirect component if user is not logged in 
     useEffect(() => {
-      if (redirectState) {
-          navigate('/login');
+      if (redirect) {
+          navigate('/vandor/login');
       }
-  }, [redirectState, navigate]);
+  }, [redirect]);
   return (
   <div className='bg-black text-white'>
       <div className='max-w-[1400px] mx-auto h-[100px] flex items-center justify-between'>

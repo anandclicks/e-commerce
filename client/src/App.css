@@ -63,9 +63,11 @@
     outline: none;
     width: 90%;
 }
-.cartBtn, .likeItems{
-    height: 50px;
-    width: 120px;
+.cartBtn, .likeItems, .loginBtn,.profieBtn{
+    height: 40px;
+    font-size: 14px;
+    border: 1px solid #1f1f1f;
+    width: 100px;
     background-color: var(--semiDark);
     display: flex;
     align-items: center;
@@ -442,4 +444,31 @@
 }
 .costomerRegistrationForm{
     width: 400px;
+}
+
+
+/* my cart css  */
+.cartWrapper{
+    height: 100vh;
+    width: 100%;
+    background-color: #000000;
+    color: #fff;
+}
+.cartPage{
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+}
+.cartLeftSide{
+    height: 100%;
+    width: 70%;
+}
+.specificProdcutCartOfCartArray{
+    height: 100px;
+    width: 100%;
+    background-color: var(--semiDark);
+}   
+.cartRightSide{
+    width: 30%;
+    height: 100%;
 }

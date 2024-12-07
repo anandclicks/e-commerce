@@ -48,7 +48,8 @@ const customerModel = new mongoose.Schema({
   ],
   yourOrders : [
     {
-      type : mongoose.Schema.Types.ObjectId
+      type : mongoose.Schema.Types.ObjectId,
+      ref : "productModel"
     }
   ]
 })

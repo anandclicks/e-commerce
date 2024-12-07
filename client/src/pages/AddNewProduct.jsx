@@ -3,6 +3,7 @@ import LoadingDiv from '../components/LoadingDiv'
 import axios from 'axios'
 
 const AddNewProduct = () => {
+
   // usestate for images 
   const [imagesForSend, setimagesForSend] = useState([])
     const [prodcutImages, setprodcutImages] = useState({

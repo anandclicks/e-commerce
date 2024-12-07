@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken')
 const customerModel = require('../models/customer.model')
 
 const isCustomerAuthenticated = async(req,res,next)=> {
-  console.log(req.cookies)
   const token = req.cookies?.customerToken
+  // console.log(req.cookies)
  try {
   if(!token) {
     return res.json({

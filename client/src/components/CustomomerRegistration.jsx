@@ -37,7 +37,7 @@ const CustomomerRegistration = () => {
   // HANDLEING NAVIGATION PART 
   useEffect(()=> {
     if(redirect) {
-      navigate('/home/customer-login')
+      navigate('/login')
     }
   },[redirect])
   return (

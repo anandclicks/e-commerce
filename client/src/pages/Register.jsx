@@ -42,7 +42,7 @@ const Register = () => {
 const navigate = useNavigate()
 useEffect(()=> {
   if(registrationComplete) {
-    navigate('/vanddor/login')
+    navigate('/vandor/login')
   }
 },[registrationComplete])
   return (

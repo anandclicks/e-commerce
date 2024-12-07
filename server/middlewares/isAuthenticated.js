@@ -2,9 +2,7 @@ const jwt = require('jsonwebtoken')
 const userModel = require('../models/user.model')
 
 const isAuthenticated = (req,res,next)=> {
-    console.log(req.cookies)
     const token = req.cookies?.token
-    console.log(token)
    try {
     if(!token) {
         return res.json({
@@ -17,7 +15,6 @@ const isAuthenticated = (req,res,next)=> {
          jwt.verify(token, process.env.JWT_SECREAT,async(err,decode)=> {
             const user = await userModel.findOne({emailAddress : decode.emailAddress}).select('-password').populate('porducts')
             req.user = user
-         //    console.log('user for login ',req.user)
             next()
          })
  

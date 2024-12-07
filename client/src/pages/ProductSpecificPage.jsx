@@ -1,18 +1,41 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ProductContext } from '../../context/productContext'
 import axios from 'axios'
+import { CustomerContext } from '../../context/customerContext'
 
 const ProductSpecificPage = () => {
+    
+    // getting function from customer context to save loggedin customer data 
+    const {setloggedInCustomer,loggedInCustomer} = useContext(CustomerContext)
+
+        // usestae for checking weater this prodcut is alredy in cart or not 
+        const [alreadyInCart, setalreadyInCart] = useState(false)
+        const checking = ()=> {
+            const result = loggedInCustomer?.cartItem?.some((item)=> item == id)
+            console.log(result)
+            if(result) {
+                setalreadyInCart(true)
+            }
+        }
+        useEffect(()=> {
+            checking()
+        },[])
+    // usestate for redirect unautherized user to login page 
+    const navigate = useNavigate()
+    const [redirect, setredirect] = useState(false)
+
     // this is for show avalable size 
     const avalableSize =  ["S","M","L", "XL", "XXL"]
+
+    // usestate for product details for this file 
+    const [prodcutDetails, setprodcutDetails] = useState()
     // getting product id for this page
     const {id} = useParams()
-        // usestate for product details for this file 
-        const [prodcutDetails, setprodcutDetails] = useState()
     // api call for prodcut details 
     useEffect(()=> {
        const apiCall = async()=> {
+        checking()
         const response = await axios.get(`http://localhost:3000/api/v1/product/details/${id}`)
         if(response.data.sucess) {
             setprodcutDetails(()=> response.data.product)
@@ -20,6 +43,28 @@ const ProductSpecificPage = () => {
        }
        apiCall()
     },[])
+    
+
+    // api call for adding this prodcut into loggedin in customer cart 
+        const addToCartApiCall = async()=> {
+            const response = await axios.post("http://localhost:3000/api/v1/customer/add-to-cart",{id},{withCredentials : true})
+            console.log(response)
+            if(!response.data.sucess) {
+                setredirect(true)
+            }
+            if(response.data.sucess) {
+                setloggedInCustomer(()=> response.data.user)
+            }
+        }
+
+    //   rdirection process   
+    useEffect(()=>{
+        if(redirect) {
+            navigate('/login')
+        }
+    },[redirect])
+
+
   return (
     <div className='productPageWrapper'>
         {/* if product data not found  */}
@@ -52,7 +97,12 @@ const ProductSpecificPage = () => {
                     </div>
                     <div className="ctaButtons mt-10 flex gap-5">
                         <div className="buyNow ctaBtns"><i className="ri-shopping-cart-fill"></i> Buy now</div>
-                        <div className="addToCart ctaBtns"><i className="ri-shopping-bag-fill"></i>Add to Cart</div>
+                        {!alreadyInCart && (
+                            <div onClick={()=> addToCartApiCall()} className="addToCart ctaBtns"><i className="ri-shopping-bag-fill"></i>Add to Cart</div>
+                        )}
+                        {alreadyInCart && (
+                            <div onClick={()=> addToCartApiCall()} className="addToCart ctaBtns"><i className="ri-close-line"></i>Remove from cart</div>
+                        )}
                     </div>
                 </div>
                 {/* prodcut details side  */}
@@ -91,7 +141,7 @@ const ProductSpecificPage = () => {
                     </div>
                     <div className="policyDetails flex gap-5 items-center">
                         <div className='flex flex-col items-center'><i className="ri-calendar-check-line text-2xl bg-white text-black rounded-full h-[40px] w-[40px] flex items-center justify-center"></i>
-                        <p className='text-sm'>Delever By <br /> {(new Date().getDate() + 7) > 31 ? '3' : (new Date().getDate() + 7)}/{(new Date().getDate() + 7) > 31 ? (new Date().getMonth() + 1) : (new Date().getMonth())}/{new Date().getFullYear()}</p>
+                        <p className='text-sm'>Delever By <br /> {(new Date().getDate() + 7) > 31 ? '3' : (new Date().getDate() + 7)}/{(new Date().getMonth() + 1) > 11 ? '12' : (new Date().getMonth())}/{new Date().getFullYear()}</p>
                         </div>
                         {prodcutDetails.caseOnDelevery && (
                             <div className='inline-flex flex-col items-center text-sm'>

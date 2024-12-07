@@ -11,6 +11,7 @@ import AdminNavbar from './components/AdminNavbar'
 import AddNewProduct from './pages/AddNewProduct'
 import CustomomerRegistration from './components/CustomomerRegistration'
 import CustomomerLogin from './components/CustomomerLogin'
+import MyCart from './pages/MyCart'
 function App() {
 
   return (
@@ -20,12 +21,13 @@ function App() {
    <Routes>
     <Route path='/' element={<><Navbar/><Home/></>}/>
     <Route path='/product/:id' element={<><Navbar/><ProductSpecificPage/></>}/>
-    <Route path='/vanddor/register' element={<Register/>}/>
-    <Route path='/vanddor/login' element={<Login/>}/>
+    <Route path='/vandor/register' element={<Register/>}/>
+    <Route path='/vandor/login' element={<Login/>}/>
     <Route path='/dashbord' element={<> <AdminNavbar/><Dashbord/></>}/>
     <Route path='/dashbord/upload-product' element={<><AdminNavbar/><AddNewProduct/></>}/>
     <Route path='/signup' element={<><CustomomerRegistration/></>}/>
     <Route path='/login' element={<><CustomomerLogin/></>}/>
+    <Route path='/my-cart' element={<><Navbar/><MyCart/></>}/>
    </Routes>
    </>
   )
