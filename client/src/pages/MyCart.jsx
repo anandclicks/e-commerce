@@ -1,11 +1,25 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { CustomerContext } from '../../context/customerContext'
 
 const MyCart = () => {
   // usestate for redirect customer in case of unautherized customer 
   const [redirect, setredirect] = useState(false)
   const navigate = useNavigate()
+
+  // api call to set loggedin customer data into customer context 
+  const {setloggedInCustomer} = useContext(CustomerContext)
+useEffect(()=> {
+  const apiCall = async()=> {
+    const response = await axios.get('http://localhost:3000/api/v1/customer/loggedinCustomer', {withCredentials : true})
+    if(response.data.sucess) {
+      setloggedInCustomer(response.data.user)
+    }
+  }
+  apiCall()
+},[])
+
 
   // usestate for saving user's data 
   const [loggedInCustomerCartData, setloggedInCustomerCartData] = useState([])

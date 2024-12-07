@@ -231,11 +231,65 @@ const snedCartProduct = async(req,res)=> {
 }
 
 
+// FUNCTION FOR SENDING DATA OF LOGGEDIN CUSTOMER 
+const sendDataOfLoggedInCustomer = async(req,res)=> {
+  const customer = req.loggedInUser
+  res.json({
+    sucess : true,
+    messege : "Logged in customer!",
+    user : customer
+  })
+}
+
+
+
+
+const handleAddressUpdate = async (req, res) => {
+  const { state, cityName, district, areaName, landmark, houseNumber } = req.body;
+  const { file } = req;
+  const loggedInUserEmail = req.loggedInUser;
+
+  try {
+    const originalCustomerReff = await customerModel.findOne({ emailAddress: loggedInUserEmail.emailAddress });
+
+    if (!originalCustomerReff) {
+      return res.status(404).json({
+        success: false,
+        message: "Customer not found",
+      });
+    }
+
+    // Update the fields
+    originalCustomerReff.state = state || originalCustomerReff.state;
+    originalCustomerReff.cityName = cityName || originalCustomerReff.cityName;
+    originalCustomerReff.district = district || originalCustomerReff.district;
+    originalCustomerReff.areaName = areaName || originalCustomerReff.areaName;
+    originalCustomerReff.landmark = landmark || originalCustomerReff.landmark;
+    originalCustomerReff.houseNumber = houseNumber || originalCustomerReff.houseNumber;
+    originalCustomerReff.profilePicture = file ? `http://localhost:3000/uploads/${file.filename}` : originalCustomerReff.profilePicture;
+
+    await originalCustomerReff.save();
+
+    // Send success response
+    return res.json({
+      success: true,
+      message: "Delivery location updated successfully!",
+    });
+  } catch (error) {
+   console.log(error)
+  }
+};
+
+
+
+
 module.exports = {
   registerCustomer,
   customerLogin,
   likeControlller,
   addtoCartFunction,
   sendLikedProdcut,
-  snedCartProduct
+  sendDataOfLoggedInCustomer,
+  snedCartProduct,
+  handleAddressUpdate
 }

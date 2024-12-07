@@ -21,14 +21,20 @@ const customerModel = new mongoose.Schema({
   state : {
     type : String,
   },
-  city : {
+  cityName : {
     type : String,
   },
   landmark : {
     type : String,
   },
+  areaName : {
+    type : String
+  },
   houseNumber : {
     type : Number,
+  },
+  district : {
+    type : String
   },
   profilePicture : {
     type : String,

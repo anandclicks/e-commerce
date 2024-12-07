@@ -12,6 +12,7 @@ import AddNewProduct from './pages/AddNewProduct'
 import CustomomerRegistration from './components/CustomomerRegistration'
 import CustomomerLogin from './components/CustomomerLogin'
 import MyCart from './pages/MyCart'
+import Profile from './pages/Profile'
 function App() {
 
   return (
@@ -28,6 +29,7 @@ function App() {
     <Route path='/signup' element={<><CustomomerRegistration/></>}/>
     <Route path='/login' element={<><CustomomerLogin/></>}/>
     <Route path='/my-cart' element={<><Navbar/><MyCart/></>}/>
+    <Route path='/my-profile' element={<><Navbar/><Profile/></>}/>
    </Routes>
    </>
   )

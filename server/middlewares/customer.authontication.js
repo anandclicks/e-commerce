@@ -13,7 +13,7 @@ const isCustomerAuthenticated = async(req,res,next)=> {
     })
   }
     const decodeValue = jwt.verify(token, process.env.JWT_SECREAT_CUSTOMER)
-    const customer = await customerModel.findOne({emailAddress : decodeValue.emailAddress})
+    const customer = await customerModel.findOne({emailAddress : decodeValue.emailAddress}).select('-password')
     req.loggedInUser = customer
        next()
 

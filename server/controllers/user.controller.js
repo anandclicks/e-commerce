@@ -95,10 +95,9 @@
   // EDIT USER PERSONAL DETAILS   
   const editUserDetails = async(req,res)=> {
       const {fullName,emailAddress,address,profielImage, number} = req.body
-      
       const userForEdit = await userModel.findOne({emailAddress})
       userForEdit.FullName = fullName || userForEdit.FullName
-      userForEdit.emaiAddress = emailAddress || userForEdit.emaiAddress
+      userForEdit.emailAddress = emailAddress || userForEdit.emailAddress
       userForEdit.address = address || userForEdit.address
       userForEdit.profileImage = profielImage || userForEdit.profileImage
       userForEdit.number = number || userForEdit.number
