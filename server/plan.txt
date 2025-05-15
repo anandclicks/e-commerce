@@ -4,7 +4,7 @@
 4 - make all models, routers and controllers ✔
 5 - make api entry points and forword as per your requirement ✔
 6 - Test all api ✔
-7 - Now make all others API entry ponints such as Cart , liked items and Add customer details
+7 - Now make all others API entry ponints such as Cart , liked items and Add customer details ✔️
 
 
 

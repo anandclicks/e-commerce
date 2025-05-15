@@ -12,7 +12,7 @@ const registerCustomer = async(req,res)=> {
   if(!fullName || !emailAddress || !number || !password) {
    return res.json({
      sucess : false,
-      messeg : "Credentials are missing!"
+      messege: "Credentials are missing!"
     })
   }
   // CHECHING WEATHER CUTOMER ALREDAY EXIST OR NOT 
@@ -61,7 +61,7 @@ const customerLogin = async(req,res)=> {
   if(!emailAddress || !password) {
     return res.json({
       sucess : false,
-      messeg : "Credentials are missing!"
+      messege: "Credentials are missing!"
     })
   }
   // IF EVERTING HAS COME
@@ -108,9 +108,6 @@ const customerLogin = async(req,res)=> {
 
 
 
-
-
-
 // FUNCTION FOR HDANLDE ADD PRODCUT INTO USER'S LIKED CART  
 const likeControlller = async(req,res)=> {
   const loggedInUser = req.loggedInUser
@@ -121,7 +118,7 @@ const likeControlller = async(req,res)=> {
   if(!isItemExist) {
     res.json({
       sucess : false,
-      messeg : "Product not exist!",
+      messege: "Product not exist!",
       status : 400
     })
   }
@@ -139,7 +136,7 @@ const likeControlller = async(req,res)=> {
     await realCustomer.save()
    return res.json({
     sucess : true,
-    messege : "Product removed sucessfully form your liked items",
+    messege : "Removed From favourite",
     data : await customerModel.findOne({emailAddress : realCustomer.emailAddress}).select('-password').populate('likedProdcut')
   })
   }
@@ -149,7 +146,7 @@ const likeControlller = async(req,res)=> {
     await realCustomer.save()
     res.json({
       sucess : true,
-      messege : "Product added sucessfully into your liked items",
+      messege : "Added to favourite",
       data : await customerModel.findOne({emailAddress : realCustomer.emailAddress}).select('-password').populate('likedProdcut')
     })
   }
@@ -161,10 +158,6 @@ const likeControlller = async(req,res)=> {
   })
  }
 }
-
-
-
-
 
 
 // FUNCTION FOR ADDING PRODCUT INTO CUSTOMER'S CART ARRAY 
@@ -215,7 +208,7 @@ const sendLikedProdcut = async(req,res)=> {
   const customer = await customerModel.findOne({emailAddress : req.loggedInUser.emailAddress})
  return res.json({
     sucess : true,
-    messeg : "All your liked prodcut!",
+    messege: "All your liked prodcut!",
     user : await customerModel.findOne({emailAddress : customer.emailAddress}).populate("likedProdcut").select("-password")
   })
 }
@@ -225,7 +218,7 @@ const snedCartProduct = async(req,res)=> {
   const customer = await customerModel.findOne({emailAddress : req.loggedInUser.emailAddress}).populate('cartItem')
  return res.json({
     sucess : true,
-    messeg : "All your cart prodcut!",
+    messege: "All your cart prodcut!",
     user : await customerModel.findOne({emailAddress : customer.emailAddress}).populate("cartItem").select("-password")
   })
 }
