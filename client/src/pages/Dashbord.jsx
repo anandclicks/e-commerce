@@ -15,7 +15,7 @@ const Dashbord = () => {
   return (
     <div className='dashbordWrapper'>
         <div className="adminContainer h-full">
-        <div className="allProductsWrapper min-h-[50%]">
+        <div className="allProductsWrapper min-h-[50%] mb-10">
           <h2 className='dashBordTitle'>Your all Produts</h2>
           <div className="allProducts pt-5">
             <AdminProductsCard/>

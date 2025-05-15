@@ -5,17 +5,25 @@ import { useNavigate } from 'react-router-dom'
 const Login = () => {
   // use state for display error if comes 
   const [errorMeaaege, seterrorMeaaege] = useState(null)
+
+  
   // use state for loading div and login status 
   const [loadingDivState, setloadingDivState] = useState(null)
   const [loginStatus, setloginStatus] = useState(null)
+
+
   // usestate for login data handling 
   const [loginData, setloginData] = useState({
     emailAddress : '',
     password : ''
   })
+
+
   const handleInputData = (evt)=> {
     setloginData(prev => ({...prev, [evt.target.name] : evt.target.value}))
   }
+
+
   // handling api call 
   const apiCall = async(evt)=> {
     setloadingDivState(()=> true)
@@ -31,10 +39,14 @@ const Login = () => {
     }
     setloadingDivState(()=> false)
   }
+
+
   const navigate = useNavigate()
   {loginStatus && (
     navigate('/dashbord')
   )}
+
+
   return (
     <div className='loginWrapper h-screen w-full bg-black '>
       {loadingDivState && (

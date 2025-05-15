@@ -12,7 +12,7 @@ const AdminProductsCard = () => {
      <img className='h-full object-cover rounded-lg' src={item.Images?.[0]} alt="" />
      <div className="nameAndDips">
        <h2>{item.title}</h2>
-       <p>Quentity : 1</p>
+       <p>Quentity : {item.quantity}</p>
        <p>Price : ${item.salePrice}</p>
      </div>
      </div>

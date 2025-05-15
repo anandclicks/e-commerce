@@ -4,6 +4,7 @@ import axios from 'axios';
 const AddNewAddress = ({setloggedinCustomerData}) => {
   // USESTATE FOR SAVING FORM DATA 
   const [formData, setformData] = useState({
+    fullName : "",
     state: "",
     cityName: "",
     districtName: "",
@@ -28,9 +29,10 @@ const AddNewAddress = ({setloggedinCustomerData}) => {
     evt.preventDefault();
 
     const finalData = new FormData();
+    finalData.append("fullName", formData.fullName)
     finalData.append("state", formData.state);
     finalData.append("cityName", formData.cityName);
-    finalData.append("districtName", formData.districtName);
+    finalData.append("district", formData.district);
     finalData.append("areaName", formData.areaName);
     finalData.append("landmark", formData.landmark);
     finalData.append("houseNumber", formData.houseNumber);
@@ -45,9 +47,10 @@ const AddNewAddress = ({setloggedinCustomerData}) => {
 
   return (
     <form  onSubmit={(evt)=> handleSubmit(evt)} className='w-[600px] p-5 border-stone-800 border-[1px] rounded-md mt-5'>
+      <input onChange={handleInputData} type="text" className='inputStyling' placeholder='fullName' name='fullName' value={formData.fullName} />
       <input onChange={handleInputData} type="text" className='inputStyling' placeholder='State' name='state' value={formData.state} />
       <input onChange={handleInputData} type="text" className='inputStyling' placeholder='City name' name='cityName' value={formData.cityName} />
-      <input onChange={handleInputData} type="text" className='inputStyling' placeholder='District' name='districtName' value={formData.districtName} />
+      <input onChange={handleInputData} type="text" className='inputStyling' placeholder='District' name='district' value={formData.district} />
       <input onChange={handleInputData} type="text" className='inputStyling' placeholder='Area name' name='areaName' value={formData.areaName} />
       <input onChange={handleInputData} type="text" className='inputStyling' placeholder='Landmark' name='landmark' value={formData.landmark} />
       <input onChange={handleInputData} type="text" className='inputStyling' placeholder='House number' name='houseNumber' value={formData.houseNumber} />

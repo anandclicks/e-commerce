@@ -63,7 +63,7 @@
     outline: none;
     width: 90%;
 }
-.cartBtn, .likeItems, .loginBtn,.profieBtn{
+.cartBtn, .likeItems, .loginBtn,.profieBtn, .logoutBtn{
     height: 40px;
     font-size: 14px;
     border: 1px solid #1f1f1f;
@@ -75,6 +75,10 @@
     gap: 10px;
     border-radius: 5px;
     cursor: pointer;
+}
+.profieBtn{
+    width: auto;
+    padding: 0 10px;
 }
 .circle{
     height: 50px;
@@ -186,10 +190,11 @@
 
 /* prodcut specific page  */
 .productPageWrapper{
-    height:100vh ;
+    min-height:100vh ;
     width: 100%;
     background-color: #000000;
     color: var(--mainColor);
+    
 }
 .prodctuPage {
     max-width: 1400px;

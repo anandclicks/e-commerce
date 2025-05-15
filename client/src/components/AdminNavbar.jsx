@@ -37,7 +37,7 @@ const AdminNavbar = () => {
   <div className='bg-black text-white'>
       <div className='max-w-[1400px] mx-auto h-[100px] flex items-center justify-between'>
         <div className="logo">
-           <h1 className='leading-3 text-xl'> <p className='text-stone-500 text-sm'>Admin Dashbord</p> ᗩᑎᗩᑎᗪ ᑕᒪIᑕKᔕ</h1>
+           <Link to={'/dashbord'} className='leading-3 text-xl'> <p className='text-stone-500 text-sm'>Admin Dashbord</p> ᗩᑎᗩᑎᗪ ᑕᒪIᑕKᔕ</Link>
            <p className='leading-3'>_________________________</p>
         </div>
         <div className='flex items-center gap-3'>

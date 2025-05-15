@@ -3,6 +3,9 @@ import { ProductContext } from '../../context/productContext'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { CustomerContext } from '../../context/customerContext'
+import { ToastContainer, toast } from 'react-toastify'
+
+
 const Product = () => {
     const navigate = useNavigate()
     // USE STATE FOR REDIRECT THE USER  
@@ -10,10 +13,16 @@ const Product = () => {
     const {allProdcuts,category} = useContext(ProductContext)
     const [productData, setproductData] = useState(allProdcuts)
 
-
     // GETTING FUNCTION AND DATA OF LOGGEDIN CUSTOMER 
     const {loggedInCustomer,setloggedInCustomer} = useContext(CustomerContext)
 
+    //SHOW RESPONSE 
+       const showResponse = (msg, time) => {
+        toast(msg,{
+          theme : 'dark',
+          autoClose : time
+        })
+       };
 
     // USESTATE FOR GETTING ALL PRODCUTAS 
     useEffect(()=> {
@@ -34,11 +43,14 @@ const Product = () => {
             // SAVING LOGGEDIN CUSTOMER DATA INTO CUSTOMER CONTEXT FUNCTION 
             if(response.data.sucess) {
                 setloggedInCustomer(response.data.data)
-                console.log(response.data)
+                showResponse(response.data.messege,1500)
             }
             if(!response.data.sucess) {
                 setloggedInCustomer(response.data.data)
-                setredirectState(true)
+                 showResponse(response.data.messege,1500)
+                setTimeout(() => {
+                    setredirectState(true)
+                }, 1500);
             }
         }
 
@@ -47,7 +59,7 @@ const Product = () => {
         
     // FUNCTION TO INTRACT WITH LIKE BTN 
     const handleLikedProdcut = (evt,itemId)=> {
-        evt.target.classList.add('liked')
+        evt.target.classList.toggle('liked')
         apiCallForLikeProduct(itemId)
     }
 
@@ -72,7 +84,7 @@ const Product = () => {
                     e.preventDefault();
                     e.stopPropagation()
                     handleLikedProdcut(e,item._id)
-                    }} className="ri-heart-line likeIonOnProductCard"></i>
+                    }} className={`ri-heart-line likeIonOnProductCard ${loggedInCustomer?.likedProdcut.includes(item._id) ? "liked" : ""}`}></i>
                 {/* best selller  */}
                 {item.bestSeller && (
                     <div className="bestSeller">Best Seller <i className="ri-bard-fill"></i></div>
@@ -91,7 +103,7 @@ const Product = () => {
             ))}
         </div>
      )}
-    
+    <ToastContainer/>
    </div>
   )
 }

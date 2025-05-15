@@ -22,10 +22,8 @@ const Navbar = () => {
        {/* {loggedInCustomer ? <Link to={'/like'} className="loginBtn"><i className="ri-heart-line"></i> Like</Link> : ''} */}
        {!loggedInCustomer ? <Link to={'/login'} className="loginBtn"><i className="ri-user-3-line"></i>Login</Link> : ''}
        {loggedInCustomer ? <Link to={'/my-profile'} className="profieBtn"><i className="ri-user-3-line"></i>{loggedInCustomer.fullName}</Link> : ""}
+        <Link className="profieBtn" to={'/dashbord'}>Dashbord</Link>
        </div>
-       {/* <div onMouseEnter={()=> mouseEnterHandler(true)} onMouseLeave={()=> mouseLeaveHandler(false)}  className={`${searchBg ? 'searchResult' : 'hideSearchBG'}`}>
-        <Link to={'/main'}>Click me to go to main</Link>
-       </div> */}
     </div>
    </div>
   )

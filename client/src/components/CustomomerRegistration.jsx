@@ -17,9 +17,15 @@ const CustomomerRegistration = () => {
     number : '',
     password : ''
   })
+
+
+
   const handleInputData = (evt)=> {
     setformData(prev => ({...prev, [evt.target.name] : evt.target.value}))
   }
+
+
+
   const callApi = async(evt)=> {
     evt.preventDefault()
     setloading(true)
@@ -34,12 +40,18 @@ const CustomomerRegistration = () => {
       setredirect(()=> true)
     }
   }
+
+
+
   // HANDLEING NAVIGATION PART 
   useEffect(()=> {
     if(redirect) {
       navigate('/login')
     }
   },[redirect])
+
+
+  
   return (
     <div className='customerRegistraionWrapper'>
       {loading && (
