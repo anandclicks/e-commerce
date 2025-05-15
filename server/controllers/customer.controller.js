@@ -243,9 +243,9 @@ const sendDataOfLoggedInCustomer = async(req,res)=> {
 
 
 
-
+// FUNCTIION FOR UPDATING DELEVERY ADDRESS OF USER 
 const handleAddressUpdate = async (req, res) => {
-  const { state, cityName, district, areaName, landmark, houseNumber } = req.body;
+  const { state, cityName, district, areaName, landmark, houseNumber, fullName } = req.body;
   const { file } = req;
   const loggedInUserEmail = req.loggedInUser;
 
@@ -260,6 +260,7 @@ const handleAddressUpdate = async (req, res) => {
     }
 
     // Update the fields
+    originalCustomerReff.fullName = fullName || originalCustomerReff.fullName;
     originalCustomerReff.state = state || originalCustomerReff.state;
     originalCustomerReff.cityName = cityName || originalCustomerReff.cityName;
     originalCustomerReff.district = district || originalCustomerReff.district;

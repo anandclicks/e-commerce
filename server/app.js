@@ -15,7 +15,7 @@ app.use(cors({
 
 // ROUTERS  
 const userRouter = require('./routes/user.route.js')
-const prodcutRouter = require('./routes/Product.router.js')
+const prodcutRouter = require('./routes/Product.route.js')
 const customerRoute = require('./routes/customer.route.js')
 
 // MIDDELWARES 

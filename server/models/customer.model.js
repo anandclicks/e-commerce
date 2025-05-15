@@ -31,7 +31,7 @@ const customerModel = new mongoose.Schema({
     type : String
   },
   houseNumber : {
-    type : Number,
+    type : String,
   },
   district : {
     type : String

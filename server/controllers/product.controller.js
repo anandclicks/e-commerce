@@ -43,7 +43,6 @@ const createProducts = async(req,res)=> {
             })
         }
     } catch (error) {
-        console.log(error)
         return res.json({
             sucess : false,
             messege : "Internal server error!",
